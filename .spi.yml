@@ -1,0 +1,12 @@
+version: 1
+builder:
+  configs:
+  - documentation_targets:
+    - W3C EPUB Shared
+    - W3C EPUB Publications
+    - W3C EPUB Content Documents
+    - W3C EPUB Package Document
+    - W3C EPUB Navigation Document
+    - W3C EPUB Fixed Layouts
+    - W3C EPUB Open Container Format
+    - W3C EPUB
