@@ -15,7 +15,7 @@ Add the package to your `Package.swift` dependencies:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-w3c/swift-w3c-epub.git", from: "0.0.1")
+    .package(url: "https://github.com/swift-w3c/swift-w3c-epub.git", branch: "main")
 ]
 ```
 
