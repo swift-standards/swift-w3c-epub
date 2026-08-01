@@ -5,6 +5,10 @@ import Testing
 
 @Suite("W3C EPUB Tests")
 struct W3C_EPUB_Tests {
+    @Suite struct Unit {}
+    @Suite struct `Edge Case` {}
+    @Suite struct Integration {}
+
     @Test
     func `Version comparison`() {
         #expect(W3C_EPUB.Version.v2_0_1 < W3C_EPUB.Version.v3_0)
