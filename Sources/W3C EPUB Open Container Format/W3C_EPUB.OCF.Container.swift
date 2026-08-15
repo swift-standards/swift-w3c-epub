@@ -11,4 +11,3 @@ extension W3C_EPUB.OCF {
         }
     }
 }
-
