@@ -1,7 +1,10 @@
 import BCP_47
 import Testing
-
-@testable import W3C_EPUB
+import W3C_EPUB_Fixed_Layouts
+import W3C_EPUB_Navigation_Document
+import W3C_EPUB_Open_Container_Format
+import W3C_EPUB_Package_Document
+import W3C_EPUB_Shared
 
 @Suite("W3C EPUB Tests")
 struct W3C_EPUB_Tests {
