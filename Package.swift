@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -40,11 +40,11 @@ extension Target.Dependency {
 let package = Package(
     name: "swift-w3c-epub",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         // Individual Modules
@@ -54,13 +54,19 @@ let package = Package(
         .library(name: "W3C EPUB Package Document", targets: ["W3C EPUB Package Document"]),
         .library(name: "W3C EPUB Navigation Document", targets: ["W3C EPUB Navigation Document"]),
         .library(name: "W3C EPUB Fixed Layouts", targets: ["W3C EPUB Fixed Layouts"]),
-        .library(name: "W3C EPUB Open Container Format", targets: ["W3C EPUB Open Container Format"]),
+        .library(
+            name: "W3C EPUB Open Container Format",
+            targets: ["W3C EPUB Open Container Format"]
+        ),
 
         // Umbrella
-        .library(name: "W3C EPUB", targets: ["W3C EPUB"])
+        .library(name: "W3C EPUB", targets: ["W3C EPUB"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-standard-library-extensions.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-standard-library-extensions.git",
+            branch: "main"
+        ),
         .package(url: "https://github.com/swift-ietf/swift-bcp-47.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-html-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-css-standard.git", branch: "main"),
@@ -72,7 +78,10 @@ let package = Package(
         .target(
             name: "W3C EPUB Shared",
             dependencies: [
-                .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions")
+                .product(
+                    name: "Standard Library Extensions",
+                    package: "swift-standard-library-extensions"
+                )
             ]
         ),
 
@@ -90,7 +99,7 @@ let package = Package(
             dependencies: [
                 .w3cEPUBShared,
                 .w3cEPUBPublications,
-                .product(name: "HTML Standard", package: "swift-html-standard")
+                .product(name: "HTML Standard", package: "swift-html-standard"),
             ]
         ),
 
@@ -99,7 +108,7 @@ let package = Package(
             dependencies: [
                 .w3cEPUBShared,
                 .w3cEPUBPublications,
-                .product(name: "BCP 47", package: "swift-bcp-47")
+                .product(name: "BCP 47", package: "swift-bcp-47"),
             ]
         ),
 
@@ -107,7 +116,7 @@ let package = Package(
             name: "W3C EPUB Navigation Document",
             dependencies: [
                 .w3cEPUBShared,
-                .w3cEPUBContentDocuments
+                .w3cEPUBContentDocuments,
             ]
         ),
 
@@ -116,7 +125,7 @@ let package = Package(
             dependencies: [
                 .w3cEPUBShared,
                 .w3cEPUBPackageDocument,
-                .product(name: "CSS Standard", package: "swift-css-standard")
+                .product(name: "CSS Standard", package: "swift-css-standard"),
             ]
         ),
 
@@ -124,7 +133,7 @@ let package = Package(
             name: "W3C EPUB Open Container Format",
             dependencies: [
                 .w3cEPUBShared,
-                .w3cEPUBPackageDocument
+                .w3cEPUBPackageDocument,
             ]
         ),
 
@@ -139,7 +148,7 @@ let package = Package(
                 .w3cEPUBPackageDocument,
                 .w3cEPUBNavigationDocument,
                 .w3cEPUBFixedLayouts,
-                .w3cEPUBOpenContainerFormat
+                .w3cEPUBOpenContainerFormat,
             ]
         ),
 
