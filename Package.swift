@@ -2,10 +2,8 @@
 
 import PackageDescription
 
-// MARK: - String Extensions for Module Names
-
 extension String {
-    // Core Modules
+
     static let w3cEPUBShared: Self = "W3C EPUB Shared"
     static let w3cEPUBPublications: Self = "W3C EPUB Publications"
     static let w3cEPUBContentDocuments: Self = "W3C EPUB Content Documents"
@@ -14,13 +12,10 @@ extension String {
     static let w3cEPUBFixedLayouts: Self = "W3C EPUB Fixed Layouts"
     static let w3cEPUBOpenContainerFormat: Self = "W3C EPUB Open Container Format"
 
-    // Umbrella
     static let w3cEPUB: Self = "W3C EPUB"
 
     var tests: Self { "\(self) Tests" }
 }
-
-// MARK: - Target Dependency Extensions
 
 extension Target.Dependency {
     static var w3cEPUBShared: Self { .target(name: .w3cEPUBShared) }
@@ -33,10 +28,6 @@ extension Target.Dependency {
     static var w3cEPUB: Self { .target(name: .w3cEPUB) }
 }
 
-// MARK: - Package Definition
-
-// W3C EPUB 3.3 — Electronic Publication Standard
-// https://www.w3.org/TR/epub-33/
 let package = Package(
     name: "swift-w3c-epub",
     platforms: [
@@ -47,7 +38,7 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        // Individual Modules
+
         .library(name: "W3C EPUB Shared", targets: ["W3C EPUB Shared"]),
         .library(name: "W3C EPUB Publications", targets: ["W3C EPUB Publications"]),
         .library(name: "W3C EPUB Content Documents", targets: ["W3C EPUB Content Documents"]),
@@ -59,7 +50,6 @@ let package = Package(
             targets: ["W3C EPUB Open Container Format"]
         ),
 
-        // Umbrella
         .library(name: "W3C EPUB", targets: ["W3C EPUB"]),
     ],
     dependencies: [
@@ -70,10 +60,9 @@ let package = Package(
         .package(url: "https://github.com/swift-ietf/swift-bcp-47.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-html-standard.git", branch: "main"),
         .package(url: "https://github.com/swift-standards/swift-css-standard.git", branch: "main"),
-        // .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.18.0")
+
     ],
     targets: [
-        // MARK: - Shared
 
         .target(
             name: "W3C EPUB Shared",
@@ -84,8 +73,6 @@ let package = Package(
                 )
             ]
         ),
-
-        // MARK: - Section Modules
 
         .target(
             name: "W3C EPUB Publications",
@@ -137,8 +124,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
-
         .target(
             name: "W3C EPUB",
             dependencies: [
@@ -152,7 +137,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Tests
         .testTarget(
             name: "W3C EPUB Tests",
             dependencies: [

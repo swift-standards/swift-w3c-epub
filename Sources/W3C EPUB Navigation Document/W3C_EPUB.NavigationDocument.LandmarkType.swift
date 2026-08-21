@@ -1,7 +1,7 @@
 public import W3C_EPUB_Shared
 
 extension W3C_EPUB.NavigationDocument {
-    /// Common landmark types (epub:type values for landmarks).
+
     public enum LandmarkType: String, Sendable, Hashable, CaseIterable {
         case cover
         case titlePage = "title-page"

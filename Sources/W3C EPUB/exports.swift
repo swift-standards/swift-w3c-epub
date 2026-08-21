@@ -1,5 +1,3 @@
-// exports.swift
-
 @_exported public import W3C_EPUB_Content_Documents
 @_exported public import W3C_EPUB_Fixed_Layouts
 @_exported public import W3C_EPUB_Navigation_Document
