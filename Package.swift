@@ -2,32 +2,6 @@
 
 import PackageDescription
 
-extension String {
-
-    static let w3cEPUBShared: Self = "W3C EPUB Shared"
-    static let w3cEPUBPublications: Self = "W3C EPUB Publications"
-    static let w3cEPUBContentDocuments: Self = "W3C EPUB Content Documents"
-    static let w3cEPUBPackageDocument: Self = "W3C EPUB Package Document"
-    static let w3cEPUBNavigationDocument: Self = "W3C EPUB Navigation Document"
-    static let w3cEPUBFixedLayouts: Self = "W3C EPUB Fixed Layouts"
-    static let w3cEPUBOpenContainerFormat: Self = "W3C EPUB Open Container Format"
-
-    static let w3cEPUB: Self = "W3C EPUB"
-
-    var tests: Self { "\(self) Tests" }
-}
-
-extension Target.Dependency {
-    static var w3cEPUBShared: Self { .target(name: .w3cEPUBShared) }
-    static var w3cEPUBPublications: Self { .target(name: .w3cEPUBPublications) }
-    static var w3cEPUBContentDocuments: Self { .target(name: .w3cEPUBContentDocuments) }
-    static var w3cEPUBPackageDocument: Self { .target(name: .w3cEPUBPackageDocument) }
-    static var w3cEPUBNavigationDocument: Self { .target(name: .w3cEPUBNavigationDocument) }
-    static var w3cEPUBFixedLayouts: Self { .target(name: .w3cEPUBFixedLayouts) }
-    static var w3cEPUBOpenContainerFormat: Self { .target(name: .w3cEPUBOpenContainerFormat) }
-    static var w3cEPUB: Self { .target(name: .w3cEPUB) }
-}
-
 let package = Package(
     name: "swift-w3c-epub",
     platforms: [
@@ -77,15 +51,15 @@ let package = Package(
         .target(
             name: "W3C EPUB Publications",
             dependencies: [
-                .w3cEPUBShared
+                .target(name: "W3C EPUB Shared")
             ]
         ),
 
         .target(
             name: "W3C EPUB Content Documents",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBPublications,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Publications"),
                 .product(name: "HTML Standard", package: "swift-html-standard"),
             ]
         ),
@@ -93,8 +67,8 @@ let package = Package(
         .target(
             name: "W3C EPUB Package Document",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBPublications,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Publications"),
                 .product(name: "BCP 47", package: "swift-bcp-47"),
             ]
         ),
@@ -102,16 +76,16 @@ let package = Package(
         .target(
             name: "W3C EPUB Navigation Document",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBContentDocuments,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Content Documents"),
             ]
         ),
 
         .target(
             name: "W3C EPUB Fixed Layouts",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBPackageDocument,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Package Document"),
                 .product(name: "CSS Standard", package: "swift-css-standard"),
             ]
         ),
@@ -119,32 +93,32 @@ let package = Package(
         .target(
             name: "W3C EPUB Open Container Format",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBPackageDocument,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Package Document"),
             ]
         ),
 
         .target(
             name: "W3C EPUB",
             dependencies: [
-                .w3cEPUBShared,
-                .w3cEPUBPublications,
-                .w3cEPUBContentDocuments,
-                .w3cEPUBPackageDocument,
-                .w3cEPUBNavigationDocument,
-                .w3cEPUBFixedLayouts,
-                .w3cEPUBOpenContainerFormat,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Publications"),
+                .target(name: "W3C EPUB Content Documents"),
+                .target(name: "W3C EPUB Package Document"),
+                .target(name: "W3C EPUB Navigation Document"),
+                .target(name: "W3C EPUB Fixed Layouts"),
+                .target(name: "W3C EPUB Open Container Format"),
             ]
         ),
 
         .testTarget(
             name: "W3C EPUB Tests",
             dependencies: [
-                "W3C EPUB Shared",
-                .w3cEPUBPackageDocument,
-                .w3cEPUBNavigationDocument,
-                .w3cEPUBFixedLayouts,
-                .w3cEPUBOpenContainerFormat,
+                .target(name: "W3C EPUB Shared"),
+                .target(name: "W3C EPUB Package Document"),
+                .target(name: "W3C EPUB Navigation Document"),
+                .target(name: "W3C EPUB Fixed Layouts"),
+                .target(name: "W3C EPUB Open Container Format"),
                 .product(name: "BCP 47", package: "swift-bcp-47"),
             ]
         ),
